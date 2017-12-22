@@ -1,0 +1,24 @@
+{
+  "name": "create-cloud-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "create-cloud-api": "bin/cli.js"
+  },
+  "keywords": [
+    "AWS",
+    "Cloud",
+    "API",
+    "Serverless",
+    "Lambda",
+    "API Gateway"
+  ],
+  "author": "Platon Korzh <platon@korzh.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "fs-extra": "^5.0.0"
+  }
+}

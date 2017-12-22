@@ -1,0 +1,16 @@
+{
+  "name": "create-cloud-api",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkorzh/create-cloud-api.git"
+  },
+  "author": "Platon Korzh <platon@korzh.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pkorzh/create-cloud-api/issues"
+  },
+  "homepage": "https://github.com/pkorzh/create-cloud-api#readme"
+}
