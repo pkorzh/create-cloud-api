@@ -1,0 +1,5 @@
+{
+	"uploadsBucket": "japanesevedroireland",
+	"uploadsBucketKeyPrefix": "create-cloud-api",
+	"region": "eu-west-1"
+}

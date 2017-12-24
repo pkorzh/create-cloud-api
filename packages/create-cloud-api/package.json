@@ -1,7 +1,7 @@
 {
   "name": "create-cloud-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create AWS API",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,16 @@
   ],
   "author": "Platon Korzh <platon@korzh.io>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
+    "cross-spawn": "^5.1.0",
     "fs-extra": "^5.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkorzh/create-cloud-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pkorzh/create-cloud-api/issues"
+  },
+  "homepage": "https://github.com/pkorzh/create-cloud-api#readme"
 }

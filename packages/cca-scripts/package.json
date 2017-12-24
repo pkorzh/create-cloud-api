@@ -1,11 +1,37 @@
 {
   "name": "cca-scripts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create Cloud API Scripts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "bin": {
+    "cca-scripts": "bin/cli.js"
+  },
+  "keywords": [
+    "AWS",
+    "Cloud",
+    "API",
+    "Serverless",
+    "Lambda",
+    "API Gateway"
+  ],
+  "dependencies": {
+    "archiver": "^2.1.0",
+    "aws-sdk": "^2.175.0",
+    "cross-spawn": "^5.1.0",
+    "fs-extra": "^5.0.0",
+    "inquirer": "^4.0.1",
+    "js-yaml": "^3.10.0"
+  },
   "author": "Platon Korzh <platon@korzh.io>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkorzh/create-cloud-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pkorzh/create-cloud-api/issues"
+  },
+  "homepage": "https://github.com/pkorzh/create-cloud-api#readme"
 }
