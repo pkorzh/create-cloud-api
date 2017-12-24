@@ -4,6 +4,8 @@
 
 Inspired by [react-create-app](https://github.com/facebookincubator/create-react-app) and [aws-serverless-auth-reference-app](https://github.com/awslabs/aws-serverless-auth-reference-app).
 
+No configuration build tool to deploy AWS powered APIs.
+
 ## Try it
 
 ```
