@@ -4,9 +4,11 @@
 
 Inspired by [react-create-app](https://github.com/facebookincubator/create-react-app) and [aws-serverless-auth-reference-app](https://github.com/awslabs/aws-serverless-auth-reference-app).
 
-Build tool to deploy AWS powered APIs. Generates CloudFormation template.
+Build tool to deploy AWS powered APIs.
 
 ## Try it
+
+Make sure you have AWS CLI [installed](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) and configured (`aws configure`).
 
 ```
 npm install -g create-cloud-api
