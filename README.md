@@ -14,3 +14,19 @@ create-cloud-api my-app
 cd my-app/
 npm deploy
 ```
+
+## What's inside
+
+```
+my-app
+├── README.md
+├── app.json
+├── lambda
+│   └── greeting
+│       ├── index.js
+│       └── package.json
+├── package.json
+├── swagger.yml
+└── template.js
+```
+
