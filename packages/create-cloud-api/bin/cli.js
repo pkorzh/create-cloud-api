@@ -3,9 +3,10 @@
 const fs = require('fs-extra');
 const path = require('path');
 const spawn = require('cross-spawn');
+const chalk = require('chalk');
 
 function printUsage() {
-	console.log('Usage: create-cloud-api <name>');
+	console.log(`Usage: create-cloud-api ${chalk.green('<project-directory>')}`);
 }
 
 const name = process.argv.slice(2)[0];
@@ -17,6 +18,9 @@ if (!name) {
 
 const root = path.resolve(name);
 const appName = path.basename(root);
+
+console.log(`Creating a new API app in ${chalk.green(root)}`);
+console.log();
 
 fs.ensureDirSync(root);
 
@@ -34,9 +38,11 @@ fs.writeFileSync(
 const originalDirectory = process.cwd();
 process.chdir(root);
 
-run(root, ['../packages/cca-scripts']);
+run(root, ['cca-scripts']);
 
 function run(root, dependencies) {
+	console.log('Installing packages. This might take a couple of minutes.');
+
 	return install(root, dependencies).then(() => {
 		const scriptsPath = path.resolve(
 			process.cwd(),

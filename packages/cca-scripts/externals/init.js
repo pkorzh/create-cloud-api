@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
+const chalk = require('chalk');
 
 module.exports = function init(appPath, appName, originalDirectory) {
 	const ownPackageName = require(path.join(__dirname, '..', 'package.json')).name;
@@ -32,4 +33,64 @@ module.exports = function init(appPath, appName, originalDirectory) {
 	if (fs.existsSync(templatePath)) {
 		fs.copySync(templatePath, appPath);
 	}
+
+	inquirer.prompt([{
+		type: 'list',
+		name: 'region',
+		message: 'AWS Region',
+		choices: [
+			{value: 'us-east-1', name: 'US East (N. Virginia)'},
+			{value: 'us-east-2', name: 'US East (Ohio)'},
+			{value: 'us-west-1', name: 'US West (N. California)'},
+			{value: 'us-west-2', name: 'US West (Oregon)'},
+			{value: 'ca-central-1', name: 'Canada (Central)'},
+			{value: 'eu-central-1', name: 'EU (Frankfurt)'},
+			{value: 'eu-west-1', name: 'EU (Ireland)'},
+			{value: 'eu-west-2', name: 'EU (London)'},
+			{value: 'eu-west-3', name: 'EU (Paris)'},
+			{value: 'ap-northeast-1', name: 'Asia Pacific (Tokyo)'},
+			{value: 'ap-northeast-2', name: 'Asia Pacific (Seoul)'},
+			{value: 'ap-southeast-1', name: 'Asia Pacific (Singapore)'},
+			{value: 'ap-southeast-2', name: 'Asia Pacific (Sydney)'},
+			{value: 'ap-south-1', name: 'Asia Pacific (Mumbai)'},
+			{value: 'sa-east-1', name: 'South America (São Paulo)'}
+		]
+	}, {
+		type: 'input',
+		name: 'bucketName',
+		message: 'Lambda bucket name. We will use it to upload lambda code.',
+	}]).then(answer => {
+		const appJson = {
+			region: answer.region,
+			uploadsBucket: answer.bucketName,
+			uploadsBucketKeyPrefix: ''
+		};
+
+		fs.writeFileSync(
+			path.join(appPath, 'app.json'),
+			JSON.stringify(appJson, null, 2)
+		);
+	}).then(() => {
+		console.log();
+		console.log(`Success! Created ${appName} at ${appPath}`);
+		console.log('Inside that directory, you can run several commands:');
+
+		console.log();
+		console.log(chalk.cyan(`npm run deploy`));
+		console.log('\tCreates AWS API Gateway');
+		console.log();
+
+		console.log();
+		console.log(chalk.cyan(`npm run destroy`));
+		console.log('\tDestroys AWS API Gateway');
+		console.log();
+
+		console.log(`Edit ${chalk.cyan(`app.json`)} to change bucket/region settings`);
+		console.log();
+
+		if (readmeExists) {
+			console.log();
+			console.log(chalk.yellow('You had a `README.md` file, we renamed it to `README.old.md`'));
+		}
+	});
 }

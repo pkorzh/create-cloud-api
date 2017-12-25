@@ -21,5 +21,6 @@ switch(script) {
 			process.exit(result.status);
 		}
 	default:
+		console.log('Unknown script "' + script + '".');
 		process.exit(1);
 }

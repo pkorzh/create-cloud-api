@@ -1,6 +1,6 @@
 {
   "name": "cca-scripts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create Cloud API Scripts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +19,7 @@
   "dependencies": {
     "archiver": "^2.1.0",
     "aws-sdk": "^2.175.0",
+    "chalk": "^2.3.0",
     "cross-spawn": "^5.1.0",
     "fs-extra": "^5.0.0",
     "inquirer": "^4.0.1",
