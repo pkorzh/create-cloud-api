@@ -19,6 +19,16 @@ cd my-app/
 npm deploy
 ```
 
+To get the API url run `npm run get-client-config`
+
+```
+{
+  "ApiUrl": "https://v0rbu4v75i.execute-api.eu-west-1.amazonaws.com/dev"
+}
+```
+
+Point your browser to https://v0rbu4v75i.execute-api.eu-west-1.amazonaws.com/dev/greeting.
+
 ## What's Inside
 
 ```

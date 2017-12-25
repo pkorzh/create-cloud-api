@@ -60,8 +60,25 @@ function generate(cfn, extra) {
 		}
 	};
 
-	cfn.Outputs.Api = {
+	cfn.Outputs.ApiId = {
 		Value: { Ref: 'api' }
+	};
+
+	cfn.Outputs.ApiUrl = {
+		Value: {
+			'Fn::Join': [
+				'', 
+				[
+					'https://', 
+					{'Ref': 'api'}, 
+					'.execute-api.', 
+					{'Ref': 'AWS::Region'}, 
+					'.amazonaws.com',
+					'/',
+					{'Ref': 'apiStage'}
+				]
+			]
+		}
 	};
 
 	return cfn;

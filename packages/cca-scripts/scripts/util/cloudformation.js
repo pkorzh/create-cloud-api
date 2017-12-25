@@ -106,8 +106,28 @@ function pollStack(params) {
 	});
 }
 
+function getStackOutputs() {
+	return new Promise((resolve, reject) => {
+		cf.describeStacks({StackName: app.name}, (err, data) => {
+			if (err) {
+				reject(err);
+			} else {
+				const stack = data.Stacks[0];
+				const obj = {};
+
+				for (var i = 0; i < stack.Outputs.length; i++) {
+					obj[stack.Outputs[i].OutputKey] = stack.Outputs[i].OutputValue;
+				}
+
+				resolve(obj);
+			}
+		});
+	});
+}
+
 module.exports = {
 	pollStack,
 	createStack,
 	deleteStack,
+	getStackOutputs,
 };

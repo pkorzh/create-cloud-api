@@ -11,6 +11,7 @@ if (!script) {
 switch(script) {
 	case 'deploy':
 	case 'destroy':
+	case 'get-client-config':
 		{
 			const result = spawn.sync(
 				'node',
