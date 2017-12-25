@@ -8,7 +8,7 @@ Build tool to deploy AWS powered APIs.
 
 ## Try it
 
-Make sure you have AWS CLI [installed](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) and configured (`aws configure`).
+Make sure you have AWS CLI [installed](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) and configured (run `aws configure`).
 
 ```
 npm install -g create-cloud-api
