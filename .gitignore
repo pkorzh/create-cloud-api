@@ -58,5 +58,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# vagrant
+.vagrant/
+
 # test folders
 my-app/
