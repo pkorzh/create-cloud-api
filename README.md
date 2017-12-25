@@ -6,9 +6,11 @@ Inspired by [react-create-app](https://github.com/facebookincubator/create-react
 
 Build tool to deploy AWS powered APIs.
 
-## Try it
+## Try It
 
 Make sure you have AWS CLI [installed](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) and configured (run `aws configure`).
+
+You’ll also need to have Node >= 6 on your machine.
 
 ```
 npm install -g create-cloud-api
@@ -17,7 +19,7 @@ cd my-app/
 npm deploy
 ```
 
-## What's inside
+## What's Inside
 
 ```
 my-app
