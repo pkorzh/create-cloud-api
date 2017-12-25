@@ -2,6 +2,9 @@ const path = require('path');
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+const AWS = require('aws-sdk');
+
+const s3 = new AWS.S3({ signatureVersion: 'v4' });
 
 module.exports = function init(appPath, appName, originalDirectory) {
 	const ownPackageName = require(path.join(__dirname, '..', 'package.json')).name;
@@ -59,6 +62,17 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		type: 'input',
 		name: 'bucketName',
 		message: 'Lambda bucket name. We will use it to upload lambda code.',
+		validate: function _validate(bucketName) {
+			const done = this.async();
+
+			s3.headBucket({Bucket: bucketName}, function(err, data) {
+				if (err) {
+					done('Bucket doesn\'t exists or you don\'t have permission to access it');
+				} else {
+					done(null, true);
+				}
+			});
+		}
 	}]).then(answer => {
 		const appJson = {
 			region: answer.region,
