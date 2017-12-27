@@ -27,6 +27,7 @@ Deletes the stack. This action can't be undone or interrupted. If you re-deploy 
 npm run eject
 ```
 
+`eject` will copy all required scripts and configs into app folder. This action is permanent and cannot be undone.
 
 ## Folder Structure
 
@@ -50,6 +51,18 @@ my-app
 *swagger.yml* has sample greeting API defined. `operationId` param takes the form of `<lambda-name>-<handler>`. We assume the code in placed inside index.js file.
 
 *template.js* contains CFN template that is used to create the stack. Initially it defines only `lambdaExecutionRole` resource.
+
+## Lambda Integration
+
+`AWS_PROXY` is used as an integration type. Which means lambda should return its response in the following format:
+
+```json
+{
+  "statusCode": 200,
+  "body": "",
+  "headers": {}
+}
+```
 
 ## Add API Key
 
