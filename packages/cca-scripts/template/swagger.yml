@@ -24,6 +24,8 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/GreetingResponse"
+      #security:
+      #  - api_key: []
 
 definitions:
   GreetingResponse:
@@ -32,3 +34,9 @@ definitions:
     properties:
       message:
         type: string
+
+#securityDefinitions:
+#  api_key:
+#    type: apiKey
+#    name: x-api-key
+#    in: header

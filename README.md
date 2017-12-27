@@ -12,7 +12,7 @@ Make sure you have AWS CLI [installed](http://docs.aws.amazon.com/cli/latest/use
 
 You’ll also need to have Node >= 6 on your machine.
 
-```
+```sh
 npm install -g create-cloud-api
 create-cloud-api my-app
 cd my-app/
@@ -21,26 +21,14 @@ npm deploy
 
 To get the API url run `npm run get-client-config`
 
-```
+```json
 {
-  "ApiUrl": "https://v0rbu4v75i.execute-api.eu-west-1.amazonaws.com/dev"
+  "baseUrl": "https://<api-id>.execute-api.<region>.amazonaws.com/dev"
 }
 ```
 
-Point your browser to https://v0rbu4v75i.execute-api.eu-west-1.amazonaws.com/dev/greeting.
+Point your browser to `<baseUrl>/greeting`.
 
-## What's Inside
+## How To
 
-```
-my-app
-├── README.md
-├── app.json
-├── lambda
-│   └── greeting
-│       ├── index.js
-│       └── package.json
-├── package.json
-├── swagger.yml
-└── template.js
-```
-
+- [Add API Key](https://github.com/pkorzh/create-cloud-api/blob/master/packages/cca-scripts/template/README.md#add-api-key)

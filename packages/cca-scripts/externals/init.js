@@ -15,6 +15,7 @@ module.exports = function init(appPath, appName, originalDirectory) {
 	appPackage.scripts = {
 		deploy: `${ownPackageName} deploy`,
 		destroy: `${ownPackageName} destroy`,
+		eject: `${ownPackageName} eject`,
 		'get-client-config': `${ownPackageName} get-client-config`,
 	};
 

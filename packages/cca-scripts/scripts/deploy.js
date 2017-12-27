@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const AWS = require('aws-sdk');
+const chalk = require('chalk');
 
 const paths = require('../config/paths');
 const util = require('./util');
@@ -11,7 +12,10 @@ const s3 = new AWS.S3({ signatureVersion: 'v4' });
 fs.ensureDirSync(paths.appBuildPath);
 
 function pack() {
-	return Promise.all(util.codegen.lambda.collectLambdas(api).map(util.archiver.archive));
+	return Promise.all(util.codegen.lambda.collectLambdas(api).map((lambda) => {
+		console.log(`Packing ${chalk.cyan(lambda.zip)}`);
+		return util.archiver.archive(lambda);
+	}));
 }
 
 function generateTemplate() {
@@ -19,7 +23,8 @@ function generateTemplate() {
 
 	const reducers = [
 		util.codegen.lambda.generate,
-		util.codegen.apigateway.generate
+		util.codegen.apigateway.generate,
+		util.codegen.apiKey.generate,
 	];
 
 	const cfn = reducers.reduce((cfn, reducer) => {
@@ -47,8 +52,10 @@ function upload() {
 			return new Promise((resolve, reject) => {
 				let config = {
 					Bucket: util.app.uploadsBucket,
-					Key: `${util.app.uploadsBucketKeyPrefix}/${path.basename(file)}`,				
+					Key: `${util.app.uploadsBucketKeyPrefix}/${path.basename(file)}`,
 				};
+
+				console.log(`Uploading ${chalk.cyan(path.basename(file))}`);
 
 				s3.putObject(Object.assign(config, {Body: content}), (err) => {
 					err ? reject(err) : resolve();
@@ -58,7 +65,19 @@ function upload() {
 }
 
 pack()
-	.then(generateTemplate)
-	.then(outputGeneratedTemplate)
-	.then(upload)
-	.then(util.cloudformation.createStack);
+	.then(() => {
+		console.log();
+		console.log('Generating CloudFormation template');
+		return generateTemplate();
+	})
+	.then((cfn) => {
+		return outputGeneratedTemplate(cfn);
+	})
+	.then(() => {
+		console.log();
+		return upload();
+	})
+	.then(() => {
+		console.log();
+		return util.cloudformation.createStack();
+	});

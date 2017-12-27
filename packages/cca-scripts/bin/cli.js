@@ -12,6 +12,7 @@ switch(script) {
 	case 'deploy':
 	case 'destroy':
 	case 'get-client-config':
+	case 'eject':
 		{
 			const result = spawn.sync(
 				'node',
