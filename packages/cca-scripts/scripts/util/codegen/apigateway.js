@@ -60,11 +60,11 @@ function generate(cfn, extra) {
 		}
 	};
 
-	cfn.Outputs.ApiId = {
+	cfn.Outputs.apiId = {
 		Value: { Ref: 'api' }
 	};
 
-	cfn.Outputs.ApiUrl = {
+	cfn.Outputs.apiUrl = {
 		Value: {
 			'Fn::Join': [
 				'', 

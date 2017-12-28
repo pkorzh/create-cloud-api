@@ -10,6 +10,7 @@ AWS.config.update({
 });
 
 const cf = new AWS.CloudFormation();
+const ag = new AWS.APIGateway();
 
 function createStack() {
 	return new Promise((resolve, reject) => {
@@ -106,6 +107,25 @@ function pollStack(params) {
 	});
 }
 
+function _getApiKey(outputs) {
+	return new Promise((resolve, reject) => {
+		const params = {
+			apiKey: outputs.apiKeyId,
+			includeValue: true
+		};
+
+		ag.getApiKey(params, function(err, data) {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(Object.assign(outputs, {
+					apiKey: data.value
+				}));
+			}
+		});
+	});
+}
+
 function getStackOutputs() {
 	return new Promise((resolve, reject) => {
 		cf.describeStacks({StackName: app.name}, (err, data) => {
@@ -119,7 +139,11 @@ function getStackOutputs() {
 					obj[stack.Outputs[i].OutputKey] = stack.Outputs[i].OutputValue;
 				}
 
-				resolve(obj);
+				if (obj.apiKeyId) {
+					resolve(_getApiKey(obj));
+				} else {
+					resolve(obj);
+				}
 			}
 		});
 	});
