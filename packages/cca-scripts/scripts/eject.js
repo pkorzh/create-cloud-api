@@ -83,10 +83,15 @@ inquirer.prompt({
 		);
 
 		console.log();
-		console.log('Installing...');
+		console.log('Installing dependencies...');
 
 		spawn('npm', ['install', '--loglevel', 'error'], {
 			stdio: 'inherit',
 		});
+
+		console.log();
+		console.log(chalk.green('Please tell us why you ejected. This will help improve the project.'));
+		console.log('\thttps://goo.gl/forms/nKiecNBegiLrjyVl2');
+		console.log();
 	}
 });

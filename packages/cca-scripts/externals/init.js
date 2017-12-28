@@ -69,7 +69,7 @@ module.exports = function init(appPath, appName, originalDirectory) {
 
 			s3.headBucket({Bucket: bucketName}, function(err, data) {
 				if (err) {
-					done('Bucket doesn\'t exists or you don\'t have permission to access it');
+					done(`Bucket doesn\'t exists or you don\'t have permission to access it. Forgot to run ${chalk.cyan('aws configure')}?`);
 				} else {
 					done(null, true);
 				}

@@ -34,6 +34,10 @@ function generate(cfn, extra) {
 				UsagePlanId: {'Ref': 'usagePlan'}
 			}
 		};
+
+		cfn.Outputs.apiKeyId = {
+			Value: { Ref: 'apiKey' }
+		};
 	}
 
 	return cfn;

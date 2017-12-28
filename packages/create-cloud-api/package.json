@@ -1,6 +1,6 @@
 {
   "name": "create-cloud-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create AWS API",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
