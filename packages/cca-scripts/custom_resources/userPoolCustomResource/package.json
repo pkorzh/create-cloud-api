@@ -1,0 +1,10 @@
+{
+  "name": "userPoolCustomResource",
+  "version": "1.0.0",
+  "description": "Amazon Cognito User Pool Custom Resource",
+  "private": true,
+  "cca_scripts": {
+    "iam_role_name": "userPoolCustomResourceRole",
+    "timeout": 15
+  }
+}

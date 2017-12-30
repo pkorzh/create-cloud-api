@@ -3,6 +3,7 @@
 const spawn = require('cross-spawn');
 
 const script = process.argv.slice(2)[0];
+const rest = process.argv.slice(3);
 
 if (!script) {
 	process.exit(1);
@@ -13,10 +14,11 @@ switch(script) {
 	case 'destroy':
 	case 'get-client-config':
 	case 'eject':
+	case 'template':
 		{
 			const result = spawn.sync(
 				'node',
-				[require.resolve(`../scripts/${script}`)],
+				[require.resolve(`../scripts/${script}`)].concat(rest),
 				{ stdio: 'inherit' }
 			);
 

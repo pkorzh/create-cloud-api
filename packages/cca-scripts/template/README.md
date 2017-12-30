@@ -29,6 +29,14 @@ npm run eject
 
 `eject` will copy all required scripts and configs into app folder. This action is permanent and cannot be undone.
 
+### Template
+
+```sh
+npm run template -- cognito
+```
+
+`template` exists to add CFN resources to *template.js* file. Resources like cognito require app specific configuration: user attributes and identity pool roles. I find it best to manage this in CloudFormation template.
+
 ## Folder Structure
 
 ```
@@ -50,11 +58,11 @@ my-app
 
 *swagger.yml* has sample greeting API defined. `operationId` param takes the form of `<lambda-name>-<handler>`. We assume the code in placed inside index.js file.
 
-*template.js* contains CFN template that is used to create the stack. Initially it defines only `lambdaExecutionRole` resource.
+*template.js* contains CFN template that is used to create the stack. Initially it defines only `lambdaRestApiRole` resource.
 
 ## Lambda Integration
 
-`AWS_PROXY` is used as an integration type. Which means lambda should return its response in the following format:
+`AWS_PROXY` is used as an integration type. Which means lambda should return it's response in the following format:
 
 ```json
 {
@@ -64,7 +72,33 @@ my-app
 }
 ```
 
-## Add API Key
+## Listing Lambda Functions
+
+```js
+const cca = require('cca-scripts');
+
+console.log(
+	cca.collectLambdas()
+);
+
+[ { name: 'greeting',
+    zip: 'greeting-1.0.0.zip',
+    description: 'Displays greetings',
+    version: '1.0.0',
+    keywords: [ 'greeting' ] } ]
+```
+
+## Getting Lambda ARN Inside Template
+
+```js
+  { 'Fn::GetAtt' : ['<lambda-name><lambda-handler-capitalized>', 'Arn'] }
+
+  //e.g.
+
+  { 'Fn::GetAtt' : ['greetingHandler', 'Arn'] }
+```
+
+## Add API Key Authorization
 
 Add the lines bellow to *swagger.yml* file to enable API Key creation.
 
@@ -85,4 +119,26 @@ Add the lines bellow to *swagger.yml* file to enable API Key creation.
 +    type: apiKey
 +    name: x-api-key
 +    in: header
+```
+
+## Add AWS IAM Authorization
+
+### For Swagger 2.0
+
+```diff
+ paths:
+   /greeting:
+     get:
+       description: Displays greetings
+       operationId: greeting-handler
++      security:
++        - aws_iam: []
+...
+
++securityDefinitions:
++  aws_iam:
++    type: apiKey
++    name: Authorization
++    in: header
++    x-amazon-apigateway-authtype: "awsSigv4"
 ```

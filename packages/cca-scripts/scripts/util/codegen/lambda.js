@@ -1,52 +1,73 @@
 const path = require('path');
-const paths = require('../../../config/paths');
 
+const paths = require('../../../config/paths');
 const app = require('../app');
+const getAllLambda = require('../lambda').all;
 
 function generate(cfn, extra) {
+	const lambdas = {};
 
-	collectLambdas(extra.api).forEach(lambda => {
+	_map(extra.api).forEach(lambda => {
 		Object.assign(cfn.Resources, attachFunction(lambda));
-		Object.assign(cfn.Resources, attachInvokePermission(lambda));
+
+		if (lambda.restHandler) {
+			Object.assign(cfn.Resources, attachInvokePermission(lambda));
+		}
 	});
 
 	return cfn;
 }
 
-function collectLambdas(api) {
+function _map(api) {
 	const arr = [];
 
-	for (let _path in api.paths) {
-		for (let method in api.paths[_path]) {
+	getAllLambda().forEach(lambda => {
+		let restHandler = false;
 
-			const definition = api.paths[_path][method];
-			const operationId = definition.operationId;
-			const [lambdaName, handler] = operationId.split('-');
+		for (let _path in api.paths) {
+			for (let method in api.paths[_path]) {
 
-			const { version, keywords } = require(
-				path.join(paths.appLambdaPath, lambdaName, 'package.json')
-			);
+				const { 
+					operationId, 
+					description 
+				} = api.paths[_path][method];
 
-			arr.push({
-				name: lambdaName,
-				zip: `${lambdaName}-${version}.zip`,
-				description: definition.description || lambdaPackageJson.description,
-				version,
-				keywords,
-				handler,
-			});
+				const [
+					lambdaName,
+					handler
+				] = operationId.split('-');
+
+				if (lambdaName === lambda.name) {
+					arr.push(Object.assign({}, lambda, {
+						description: description || lambda.description,
+						handler,
+						restHandler: true
+					}));
+
+					restHandler = true;
+				}
+			}
 		}
-	}
 
-	return arr;
+		if (!restHandler) {
+			arr.push(Object.assign({}, lambda, {
+				handler: 'handler',
+			}));
+		}
+	});
+
+	return arr.map(lambda => {
+		lambda.logicalName = lambda.name + lambda.handler.charAt(0).toUpperCase() + lambda.handler.slice(1);
+		return lambda
+	});
 }
 
 function attachInvokePermission(lambda) {
 	return {
-		[`${lambda.name}Permission`]: {
+		[`${lambda.logicalName}Permission`]: {
 			Type: 'AWS::Lambda::Permission',
 			Properties: {
-				FunctionName: { 'Fn::GetAtt': [lambda.name, 'Arn'] },
+				FunctionName: { 'Fn::GetAtt': [lambda.logicalName, 'Arn'] },
 				Action: 'lambda:InvokeFunction',
 				Principal: 'apigateway.amazonaws.com',
 				SourceArn: {
@@ -68,18 +89,19 @@ function attachInvokePermission(lambda) {
 	};
 }
 
-function attachFunction(lambda) {
+function attachFunction(lambda, defaultRole = 'lambdaRestApiRole') {
 	return {
-		[lambda.name]: {
+		[lambda.logicalName]: {
 			Type: 'AWS::Lambda::Function',
 			Properties: {
 				Runtime: 'nodejs6.10',
-				Handler: 'index.handler',
-				Role: { 'Fn::GetAtt': ['lambdaExecutionRole', 'Arn'] },
+				Handler: `index.${lambda.handler}`,
+				Role: { 'Fn::GetAtt': [lambda.role || defaultRole, 'Arn'] },
 				Code: {
 					S3Bucket: app.uploadsBucket,
 					S3Key: `${app.uploadsBucketKeyPrefix}/${lambda.zip}`
 				},
+				Timeout: lambda.timeout || 3,
 				Environment: {
 					Variables: {}
 				},
@@ -90,6 +112,5 @@ function attachFunction(lambda) {
 }
 
 module.exports = {
-	generate,
-	collectLambdas
+	generate
 };

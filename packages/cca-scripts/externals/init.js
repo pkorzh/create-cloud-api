@@ -16,6 +16,7 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		deploy: `${ownPackageName} deploy`,
 		destroy: `${ownPackageName} destroy`,
 		eject: `${ownPackageName} eject`,
+		template: `${ownPackageName} template`,
 		'get-client-config': `${ownPackageName} get-client-config`,
 	};
 
@@ -99,6 +100,16 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		console.log();
 		console.log(chalk.cyan(`npm run destroy`));
 		console.log('\tDestroys AWS API Gateway');
+		console.log();
+
+		console.log();
+		console.log(chalk.cyan(`npm run eject`));
+		console.log('\tEjects the configuration');
+		console.log();
+
+		console.log();
+		console.log(chalk.cyan(`npm run template -- <resource>`));
+		console.log('\tAdd CFN resource to the template');
 		console.log();
 
 		console.log(`Edit ${chalk.cyan(`app.json`)} to change bucket/region settings`);

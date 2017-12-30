@@ -3,5 +3,6 @@ module.exports = {
 	archiver: require('./archiver'),
 	app: require('./app'),
 	codegen: require('./codegen'),
-	cloudformation: require('./cloudformation')
+	cloudformation: require('./cloudformation'),
+	lambda: require('./lambda')
 };

@@ -1,3 +1,4 @@
+---
 swagger: "2.0"
 
 info:
@@ -36,7 +37,14 @@ definitions:
         type: string
 
 #securityDefinitions:
+#
 #  api_key:
 #    type: apiKey
 #    name: x-api-key
 #    in: header
+
+#  aws_iam:
+#    type: "apiKey"
+#    name: "Authorization"
+#    in: "header"
+#    x-amazon-apigateway-authtype: "awsSigv4"

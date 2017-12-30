@@ -1,5 +1,6 @@
 module.exports = {
 	apigateway: require('./apigateway'),
 	lambda: require('./lambda'),
-	apiKey: require('./api-key')
+	apiKey: require('./api-key'),
+	cognito: require('./cognito'),
 };

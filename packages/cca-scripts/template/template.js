@@ -4,7 +4,7 @@ module.exports = {
 	Parameters: {},
 	Conditions: {},
 	Resources: {
-		lambdaExecutionRole: {
+		lambdaRestApiRole: {
 			Type: 'AWS::IAM::Role',
 			Properties: {
 				AssumeRolePolicyDocument: {

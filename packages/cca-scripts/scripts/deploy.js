@@ -12,14 +12,14 @@ const s3 = new AWS.S3({ signatureVersion: 'v4' });
 fs.ensureDirSync(paths.appBuildPath);
 
 function pack() {
-	return Promise.all(util.codegen.lambda.collectLambdas(api).map((lambda) => {
+	return Promise.all(util.lambda.all().map((lambda) => {
 		console.log(`Packing ${chalk.cyan(lambda.zip)}`);
 		return util.archiver.archive(lambda);
 	}));
 }
 
 function generateTemplate() {
-	const emptyCfn = require(path.join(paths.appPath, 'template'));
+	const emptyCfn = require(paths.appTemplateJs);
 
 	const reducers = [
 		util.codegen.lambda.generate,

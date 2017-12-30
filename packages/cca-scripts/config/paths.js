@@ -16,4 +16,6 @@ module.exports = {
 	appJson: resolveApp('app.json'),
 
 	appSwaggerYml: resolveApp('swagger.yml'),
+
+	appTemplateJs: resolveApp('template.js'),
 };

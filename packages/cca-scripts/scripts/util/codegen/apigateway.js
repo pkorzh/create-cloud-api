@@ -85,10 +85,17 @@ function generate(cfn, extra) {
 }
 
 function process(definition) {
+	const [
+		name,
+		handler
+	] = definition.operationId.split('-');
+
+	const logicalName = name + handler.charAt(0).toUpperCase() + handler.slice(1);
+
 	definition['x-amazon-apigateway-integration'] = {
 		type: 'aws_proxy',
 		uri: {'Fn::Join': ['',
-			['arn:aws:apigateway:', {'Ref': 'AWS::Region'}, ':lambda:path/2015-03-31/functions/', {'Fn::GetAtt': [definition.operationId.split('-')[0], 'Arn']}, '/invocations']
+			['arn:aws:apigateway:', {'Ref': 'AWS::Region'}, ':lambda:path/2015-03-31/functions/', {'Fn::GetAtt': [logicalName, 'Arn']}, '/invocations']
 		]},
 		passthroughBehavior: 'when_no_match',
 		httpMethod: 'POST'
