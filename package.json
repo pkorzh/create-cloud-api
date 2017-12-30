@@ -1,4 +1,7 @@
 {
   "name": "create-cloud-api",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "lerna": "^2.5.1"
+  }
 }
