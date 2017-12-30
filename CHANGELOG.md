@@ -1,4 +1,4 @@
-## WIP
+## December 30, 2017
 
 #### `create-cloud-api@1.0.4`
 
