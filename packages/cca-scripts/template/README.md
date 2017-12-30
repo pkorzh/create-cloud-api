@@ -98,6 +98,26 @@ console.log(
   { 'Fn::GetAtt' : ['greetingHandler', 'Arn'] }
 ```
 
+## *package.json* `cca-scripts` Section
+
+Lambda's *package.json* may contain `cca-scripts` section.
+
+```diff
+ {
+   "name": "greeting",
+   "version": "1.0.0",
+   "private": true,
+   "keywords": [
+     "greeting"
+   ],
++  "cca_scripts": {
++    "iam_role_name": "iam_role_name",
++    "timeout": 15
++  }
+ }
+
+```
+
 ## Add API Key Authorization
 
 Add the lines bellow to *swagger.yml* file to enable API Key creation.

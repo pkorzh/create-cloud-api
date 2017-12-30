@@ -31,6 +31,10 @@ Point your browser to `<baseUrl>/greeting`.
 
 ## How To
 
+Read the full [user guide](https://github.com/pkorzh/create-cloud-api/blob/master/packages/cca-scripts/template/README.md).
+
+Here's some topic selection:
+
 - [Add API Key Authorization](https://github.com/pkorzh/create-cloud-api/blob/master/packages/cca-scripts/template/README.md#add-api-key-authorization)
 - [Add AWS IAM Authorization](https://github.com/pkorzh/create-cloud-api/blob/master/packages/cca-scripts/template/README.md#add-aws-iam-authorization)
 - [Listing Lambda Functions](https://github.com/pkorzh/create-cloud-api/blob/master/packages/cca-scripts/template/README.md#listing-lambda-functions)
