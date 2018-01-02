@@ -37,6 +37,14 @@ npm run template -- cognito
 
 `template` exists to add CFN resources to *template.js* file. Resources like cognito require app specific configuration: user attributes and identity pool roles. I find it best to manage this in CloudFormation template.
 
+### Export API
+
+```sh
+npm run export-api -- <stage_name>
+```
+
+Exports Swagger API definition from AWS.
+
 ## Folder Structure
 
 ```

@@ -113,6 +113,11 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		console.log('\tAdd CFN resource to the template');
 		console.log();
 
+		console.log();
+		console.log(chalk.cyan(`npm run export-api -- <stage_name>`));
+		console.log('\tExports Swagger API definition from AWS');
+		console.log();
+
 		console.log(`Edit ${chalk.cyan(`app.json`)} to change bucket/region settings`);
 		console.log();
 
