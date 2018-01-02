@@ -17,6 +17,7 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		destroy: `${ownPackageName} destroy`,
 		eject: `${ownPackageName} eject`,
 		template: `${ownPackageName} template`,
+		'export-api': `${ownPackageName} export-api`,
 		'get-client-config': `${ownPackageName} get-client-config`,
 	};
 
@@ -110,6 +111,11 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		console.log();
 		console.log(chalk.cyan(`npm run template -- <resource>`));
 		console.log('\tAdd CFN resource to the template');
+		console.log();
+
+		console.log();
+		console.log(chalk.cyan(`npm run export-api -- <stage_name>`));
+		console.log('\tExports Swagger API definition from AWS');
 		console.log();
 
 		console.log(`Edit ${chalk.cyan(`app.json`)} to change bucket/region settings`);
