@@ -6,6 +6,10 @@ Inspired by [react-create-app](https://github.com/facebookincubator/create-react
 
 Build tool to deploy AWS powered APIs.
 
+## How does it work
+
+`create-cloud-api` expect you to write swagger definition for your API and lambda code. It will then generate CloudFormation template, pack & upload lambdas, and finally create a stack for you.
+
 ## Try It
 
 Make sure you have AWS CLI [installed](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) and configured (run `aws configure`).
