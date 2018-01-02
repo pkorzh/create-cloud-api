@@ -1,3 +1,10 @@
+## January 3, 2018
+
+#### `cca-scripts@1.4.0`
+
+* Updated documentation
+* Export Swagger API
+
 ## December 30, 2017
 
 #### `create-cloud-api@1.0.4`
