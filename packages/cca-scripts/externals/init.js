@@ -17,6 +17,7 @@ module.exports = function init(appPath, appName, originalDirectory) {
 		destroy: `${ownPackageName} destroy`,
 		eject: `${ownPackageName} eject`,
 		template: `${ownPackageName} template`,
+		'export-api': `${ownPackageName} export-api`,
 		'get-client-config': `${ownPackageName} get-client-config`,
 	};
 

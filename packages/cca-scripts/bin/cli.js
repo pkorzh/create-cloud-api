@@ -15,6 +15,7 @@ switch(script) {
 	case 'get-client-config':
 	case 'eject':
 	case 'template':
+	case 'export-api':
 		{
 			const result = spawn.sync(
 				'node',
