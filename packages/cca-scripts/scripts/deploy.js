@@ -11,6 +11,10 @@ const s3 = new AWS.S3({ signatureVersion: 'v4' });
 
 fs.ensureDirSync(paths.appBuildPath);
 
+function compile() {
+	return util.webpack.compile();
+}
+
 function pack() {
 	return Promise.all(util.lambda.all().map((lambda) => {
 		console.log(`Packing ${chalk.cyan(lambda.zip)}`);
@@ -64,7 +68,12 @@ function upload() {
 		}));
 }
 
-pack()
+console.log('Compiling lambda functions');
+
+compile()
+	.then(() => {
+		return pack();
+	})
 	.then(() => {
 		console.log();
 		console.log('Generating CloudFormation template');

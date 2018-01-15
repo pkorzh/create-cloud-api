@@ -1,10 +1,7 @@
-module.exports.handler = (event, context, callback) => {
-	const response = {
-		statusCode: 200,
-		body: JSON.stringify({
-			message: 'Greetings from API',
-		})
-	};
+import { ok_response } from '../../src/response';
 
-	callback(null, response);
+export function handler(event, context, callback) {
+	callback(null, ok_response({
+		message: 'Greetings from API',
+	}));
 };

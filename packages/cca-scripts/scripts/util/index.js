@@ -5,5 +5,6 @@ module.exports = {
 	codegen: require('./codegen'),
 	cloudformation: require('./cloudformation'),
 	lambda: require('./lambda'),
-	apigateway: require('./apigateway')
+	apigateway: require('./apigateway'),
+	webpack: require('./webpack'),
 };

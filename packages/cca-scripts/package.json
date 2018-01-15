@@ -20,12 +20,17 @@
   "dependencies": {
     "archiver": "^2.1.0",
     "aws-sdk": "^2.175.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "chalk": "^2.3.0",
     "cross-spawn": "^5.1.0",
     "fs-extra": "^5.0.0",
     "inquirer": "^4.0.1",
     "js-yaml": "^3.10.0",
-    "stringify-object": "^3.2.1"
+    "stringify-object": "^3.2.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0"
   },
   "author": "Platon Korzh <platon@korzh.io>",
   "license": "MIT",
@@ -36,5 +41,6 @@
   "bugs": {
     "url": "https://github.com/pkorzh/create-cloud-api/issues"
   },
-  "homepage": "https://github.com/pkorzh/create-cloud-api#readme"
+  "homepage": "https://github.com/pkorzh/create-cloud-api#readme",
+  "devDependencies": {}
 }

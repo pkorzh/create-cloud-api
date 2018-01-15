@@ -28,7 +28,8 @@ To get the API url run `npm run get-client-config`
 
 ```json
 {
-  "baseUrl": "https://<api-id>.execute-api.<region>.amazonaws.com/dev"
+  "baseUrl": "https://<api-id>.execute-api.<region>.amazonaws.com/dev",
+  ...
 }
 ```
 

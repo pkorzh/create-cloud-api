@@ -18,7 +18,7 @@ function archive(lambda) {
 		});
 
 		archive.pipe(output);
-		archive.directory(path.join(paths.appLambdaPath, lambda.name), '/');
+		archive.directory(path.join(paths.appBuildPath, 'functions', lambda.name), '/');
 		
 		archive.finalize();
 	});
