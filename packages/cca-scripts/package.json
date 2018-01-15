@@ -1,6 +1,6 @@
 {
   "name": "cca-scripts",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Create Cloud API Scripts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -41,6 +41,5 @@
   "bugs": {
     "url": "https://github.com/pkorzh/create-cloud-api/issues"
   },
-  "homepage": "https://github.com/pkorzh/create-cloud-api#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/pkorzh/create-cloud-api#readme"
 }
