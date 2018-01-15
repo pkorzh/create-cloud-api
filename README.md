@@ -21,7 +21,7 @@ You’ll also need to have Node >= 6 on your machine.
 npm install -g create-cloud-api
 create-cloud-api my-app
 cd my-app/
-npm deploy
+npm run deploy
 ```
 
 To get the API url run `npm run get-client-config`
