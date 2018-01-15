@@ -1,3 +1,9 @@
+## January 15, 2018
+
+#### `cca-scripts@1.5.0`
+
+* Webpack support
+
 ## January 3, 2018
 
 #### `cca-scripts@1.4.0`
