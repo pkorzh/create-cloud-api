@@ -1,11 +1,11 @@
 # create-cloud-api
 
+Build tool to deploy ☁️ AWS powered APIs.
+
 * 👨‍💻 Under active development
 * 🚀 Supports AWS Cognito
 
 Inspired by [react-create-app](https://github.com/facebookincubator/create-react-app) and [aws-serverless-auth-reference-app](https://github.com/awslabs/aws-serverless-auth-reference-app).
-
-Build tool to deploy AWS powered APIs.
 
 ## How does it work
 
