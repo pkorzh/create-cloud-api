@@ -1,7 +1,7 @@
 # create-cloud-api
 
-* Under active development
-* Supports AWS Cognito
+* 👨‍💻 Under active development
+* 🚀 Supports AWS Cognito
 
 Inspired by [react-create-app](https://github.com/facebookincubator/create-react-app) and [aws-serverless-auth-reference-app](https://github.com/awslabs/aws-serverless-auth-reference-app).
 
