@@ -13,9 +13,9 @@ function getConfig(fn) {
 		externals: { 'aws-sdk': 'commonjs aws-sdk' },
 		output: {
 			path: path.join(paths.appBuildPath, 'functions'),
-			library: '[name]',
+			library: fn.name,
 			libraryTarget: 'commonjs2',
-			filename: '[name]/index.js'
+			filename: `${fn.name}/index.js`
 		},
 		resolve: {
 			modules: [
