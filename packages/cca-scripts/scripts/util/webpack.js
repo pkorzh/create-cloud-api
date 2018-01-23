@@ -6,17 +6,9 @@ const getAllLambda = require('./lambda').all;
 
 const paths = require('../../config/paths');
 
-function getConfig(functions) {
+function getConfig(fn) {
 	return {
-		entry: functions.reduce((entries, fn) => {
-			entries[fn.name] = path.join(
-				paths.appLambdaPath,
-				fn.name,
-				'index.js'
-			);
-
-			return entries;
-		}, {}),
+		entry: path.join(paths.appLambdaPath, fn.name, 'index.js'),
 		target: 'node',
 		externals: { 'aws-sdk': 'commonjs aws-sdk' },
 		output: {
@@ -24,6 +16,13 @@ function getConfig(functions) {
 			library: '[name]',
 			libraryTarget: 'commonjs2',
 			filename: '[name]/index.js'
+		},
+		resolve: {
+			modules: [
+				path.resolve(
+					path.join(paths.appLambdaPath, fn.name, 'node_modules')
+				)
+			]
 		},
 		module: {
 			rules: [
@@ -48,7 +47,7 @@ function getConfig(functions) {
 
 function compile() {
 	return new Promise((resolve, reject) => {
-		webpack(getConfig(getAllLambda()), (err, status) => {
+		webpack(getAllLambda().map(fn => getConfig(fn)), (err, status) => {
 			if (err) {
 				console.error(err.stack || err);
 
