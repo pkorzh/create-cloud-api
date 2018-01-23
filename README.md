@@ -1,11 +1,13 @@
 # create-cloud-api
 
-* Under active development
-* Supports AWS Cognito
+Build tool to deploy ☁️ AWS powered APIs.
+
+* 🚀 Supports AWS Cognito
+* 👨‍💻 Use webpack to compile lambda code
+* ⛷️ Generate AWS CloudFormation template
+* 🚝 Generate client API SDK out of swagger definition
 
 Inspired by [react-create-app](https://github.com/facebookincubator/create-react-app) and [aws-serverless-auth-reference-app](https://github.com/awslabs/aws-serverless-auth-reference-app).
-
-Build tool to deploy AWS powered APIs.
 
 ## How does it work
 
