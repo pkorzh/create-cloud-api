@@ -103,7 +103,7 @@ function process(definition) {
 }
 
 function processPath(definition) {
-	const methods = `'${Object.keys(definition).join(',').toUpperCase()}'`;
+	const methods = `'OPTIONS,${Object.keys(definition).join(',').toUpperCase()}'`;
 
 	definition.options = {
 		consumes: ['application/json'],
