@@ -90,23 +90,22 @@ function attachInvokePermission(lambda) {
 }
 
 function attachFunction(lambda, defaultRole = 'lambdaRestApiRole') {
+	const properties = Object.assign({
+		Runtime: 'nodejs6.10',
+		Handler: `index.${lambda.handler}`,
+		Role: { 'Fn::GetAtt': [lambda.role || defaultRole, 'Arn'] },
+		Code: {
+			S3Bucket: app.uploadsBucket,
+			S3Key: `${app.uploadsBucketKeyPrefix}/${lambda.zip}`
+		},
+		Timeout: lambda.timeout || 3,
+		Description: lambda.Description
+	}, resources[lambda.logicalName] ? (resources[lambda.logicalName].Properties || {}) : {});
+
 	return {
 		[lambda.logicalName]: {
 			Type: 'AWS::Lambda::Function',
-			Properties: {
-				Runtime: 'nodejs6.10',
-				Handler: `index.${lambda.handler}`,
-				Role: { 'Fn::GetAtt': [lambda.role || defaultRole, 'Arn'] },
-				Code: {
-					S3Bucket: app.uploadsBucket,
-					S3Key: `${app.uploadsBucketKeyPrefix}/${lambda.zip}`
-				},
-				Timeout: lambda.timeout || 3,
-				Environment: {
-					Variables: {}
-				},
-				Description: lambda.Description
-			}
+			Properties: properties
 		}
 	};
 }

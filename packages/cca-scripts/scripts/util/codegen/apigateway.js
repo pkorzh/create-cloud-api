@@ -108,7 +108,6 @@ function processPath(definition) {
 	definition.options = {
 		consumes: ['application/json'],
 		produces: ['application/json'],
-		parameters: definition.get.parameters,
 		responses: {
 			200: {
 				description: '200 response',
