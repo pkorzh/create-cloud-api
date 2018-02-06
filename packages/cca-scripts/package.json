@@ -1,6 +1,6 @@
 {
   "name": "cca-scripts",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Create Cloud API Scripts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
