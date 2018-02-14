@@ -32,7 +32,7 @@ function generateTemplate() {
 	];
 
 	const cfn = reducers.reduce((cfn, reducer) => {
-		return reducer(cfn, {api});
+		return reducer(cfn, {api, util});
 	}, emptyCfn);
 
 	return Promise.resolve(cfn);

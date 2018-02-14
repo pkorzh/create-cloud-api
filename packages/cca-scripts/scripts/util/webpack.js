@@ -19,14 +19,12 @@ function getConfig(fn) {
 		},
 		resolve: {
 			modules: [
-				path.resolve(
-					path.join(paths.appLambdaPath, fn.name, 'node_modules')
-				)
+				path.resolve(path.join(paths.appLambdaPath, fn.name, 'node_modules'))
 			]
 		},
 		module: {
 			rules: [
-				{ 
+				{
 					test: /\.js$/, 
 					exclude: /node_modules/, 
 					loader: 'babel-loader',

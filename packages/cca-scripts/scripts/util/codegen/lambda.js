@@ -8,7 +8,7 @@ function generate(cfn, extra) {
 	const lambdas = {};
 
 	_map(extra.api).forEach(lambda => {
-		Object.assign(cfn.Resources, attachFunction(lambda));
+		Object.assign(cfn.Resources, attachFunction(cfn.Resources, lambda));
 
 		if (lambda.restHandler) {
 			Object.assign(cfn.Resources, attachInvokePermission(lambda));
@@ -89,7 +89,7 @@ function attachInvokePermission(lambda) {
 	};
 }
 
-function attachFunction(lambda, defaultRole = 'lambdaRestApiRole') {
+function attachFunction(resources, lambda, defaultRole = 'lambdaRestApiRole') {
 	const properties = Object.assign({
 		Runtime: 'nodejs6.10',
 		Handler: `index.${lambda.handler}`,

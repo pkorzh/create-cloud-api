@@ -13,7 +13,8 @@ function generate(cfn, extra) {
 		Type: 'AWS::ApiGateway::RestApi',
 		Properties: {
 			FailOnWarnings: true,
-			Body: extra.api
+			Body: extra.api,
+			Name: extra.util.app.name
 		}
 	};
 

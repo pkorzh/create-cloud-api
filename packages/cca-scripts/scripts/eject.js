@@ -7,8 +7,6 @@ const chalk = require('chalk');
 const paths = require('../config/paths');
 const util = require('./util');
 
-const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
-
 inquirer.prompt({
 	type: 'confirm',
 	name: 'shouldEject',
@@ -17,7 +15,7 @@ inquirer.prompt({
 }).then(answer => {
 	if (answer.shouldEject) {
 
-		const ownPath = resolveOwn('.');
+		const ownPath = paths.ownPath;
 		const appPath = paths.appPath;
 
 		const folders = [
