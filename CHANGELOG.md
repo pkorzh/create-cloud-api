@@ -1,3 +1,9 @@
+## February 14, 2018
+
+#### `cca-scripts@1.6.4`
+
+* Add Name property to API Gateway
+
 ## January 15, 2018
 
 #### `cca-scripts@1.5.0`
