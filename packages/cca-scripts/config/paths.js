@@ -9,7 +9,7 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 module.exports = {
 	appPath: resolveApp('.'),
 
-	appBuildPath: resolveApp('build'),
+	appBuildPath: resolveApp('.create-cloud-api'),
 
 	appLambdaPath: resolveApp('lambda'),
 
